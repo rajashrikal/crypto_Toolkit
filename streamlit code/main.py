@@ -387,6 +387,7 @@ CIPHERS = {
 
 DEMO_KEYS = {
     "Caesar Cipher": "3",
+    "Monoalphabetic Cipher": None,  # generated fresh on each comparison run
     "Playfair Cipher": "KEYWORD",
     "Hill Cipher": "3 3 2 5",
     "Vigenere Cipher": "LEMON",
@@ -449,7 +450,7 @@ with tab2:
         for name, (encrypt_fn, _, _) in CIPHERS.items():
             if name == "One-Time Pad":
                 continue
-            key = DEMO_KEYS[name]
+            key = DEMO_KEYS[name] or mono_generate_key()
             try:
                 start = time.perf_counter()
                 result = encrypt_fn(sample_text, key)
